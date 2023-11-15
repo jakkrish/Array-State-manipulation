@@ -1,42 +1,44 @@
-import { Row, Col } from "react-materialize"
+import { Row, Col } from "react-materialize";
 
-import { useState } from "react"
+import { useState } from "react";
 
-import AddName from "./components/AddName"
-import DeleteName from "./components/DeleteName"
-import NameList from "./components/NameList"
+import AddName from "./components/AddName";
+import DeleteName from "./components/DeleteName";
+import NameList from "./components/NameList";
 
 export default function App() {
-  const [names, setNames] = useState([])
+  const [names, setNames] = useState([]);
 
   const onAdd = (newName, postion) => {
     //Adding to beginning of the array
     if (postion === "first") {
-      setNames([newName, ...names])
+      setNames([newName, ...names]);
     }
     //Adding to middle of the array
     else if (postion === "middle") {
     }
     //Adding to end of the array
     else {
-      setNames([...names, newName])
+      setNames([...names, newName]);
     }
-  }
+  };
 
-  const onDelete = (postion) => {
+  const onDelete = (postion, item) => {
     if (postion === "first") {
-      const newArray = names.slice(1)
-      setNames(newArray)
+      const newArray = names.slice(1);
+      setNames(newArray);
     }
     //Adding to middle of the array
     else if (postion === "middle") {
+      const newArray = names.filter((name) => name !== item);
+      setNames(newArray);
     }
     //Adding to end of the array
     else {
-      const newArray = names.slice(0, names.length - 1)
-      setNames(newArray)
+      const newArray = names.slice(0, names.length - 1);
+      setNames(newArray);
     }
-  }
+  };
   return (
     <div className="App">
       <Row>
@@ -55,5 +57,5 @@ export default function App() {
         </Col>
       </Row>
     </div>
-  )
+  );
 }
